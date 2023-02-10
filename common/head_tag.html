@@ -1,0 +1,1804 @@
+<script type="text/discourse-plugin" version="0.8">
+  // This is the plugin outlet, followed by a custom name for the component
+  api.registerConnectorClass("top-notices", "custom-homepage", {
+
+    // Setting up our component
+    setupComponent(args, component) {
+
+     // Next we're getting the site setting 'top_menu',
+     // splitting the values into an array,
+     // and adding a leading slash
+     var topMenuRoutes = 
+        component.siteSettings.top_menu.split('|')
+        .map(function(route) {return '/' + route});
+      
+     // The first page listed in the 'top_menu' setting is your homepage
+     // lets assign it to a variable
+     var homeRoute = topMenuRoutes[0];
+  
+     // This calls our code whenever the page changes
+     api.onPageChange((url) => {
+        if (!url.includes("/t/")){
+            document.getElementsByClassName('search-banner')[0].style.display="unset";
+            if (url === "/" || url === homeRoute ){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayusers",false);
+              component.set("displaytagspage", false);
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", true); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaynewpage",false);
+              component.set("displaylatestpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("tags")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytagspage", true);
+              component.set("displayusers",false);
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaytoppage", false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("admin")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayusers",false);
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", true);
+              component.set("displaylatestpage",false);
+              component.set("displaytoppage", false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            } 
+            else if (url.includes("book") && !url.includes("/c/")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displayusers",false);
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",true);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+            } 
+            else if (url.includes("posted") && !url.includes("/c/")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayusers",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",true);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            } 
+            else if (url.includes("unseen") && !url.includes("/c/")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displayusers",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",true);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+            } 
+            
+            else if (url.includes("about") && !url.includes("/c/")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displayusers",false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displayaboutpage",true);
+              
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+              
+            } 
+            
+            else if (url.includes("top") && !url.includes("/c/")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", true);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayusers",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            } 
+            else if (url.includes("metaboanalyst")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayMetaboAnalystpage", true);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displayusers",false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            } 
+            else if (url.includes("microbiomeanalyst")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaytagspage", false);
+              component.set("displaymicrobiomeanalystpage", true); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displayusers",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+           }
+           else if (url.includes("staff")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaytagspage", false);
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayusers",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", true); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+           }
+           else if (url.includes("lounge")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaytagspage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displayusers",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",true);
+              component.set("displaynewspage",false);
+           }
+           else if (url.includes("networkanalyst")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaytagspage", false);
+              component.set("displaynetworkanalystpage", true); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayusers",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }else if (url.includes("omicsanalyst") && !url.includes("eco")){
+              document.querySelector("html").classList.add("custom-homepage");
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", true);
+              component.set("displayhomepg", false);
+              component.set("displaytagspage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displayusers",false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            
+            
+            else if (url.includes("faq") && !url.includes("/c/")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false);
+              component.set("displaytagspage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayusers",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",true);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+              
+              
+            }
+            else if (url.includes("latest") && !url.includes("/c/")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false);
+              component.set("displayadminpage", false);
+              component.set("displaytagspage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",true);
+              component.set("displaynewpage",false);
+              component.set("displayusers",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("privacy") && !url.includes("/c/")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", true); 
+              component.set("displaytagspage", false);
+              component.set("displayusers",false);
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("tos") && !url.includes("/c/")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", true); 
+              component.set("displayprivacypage", false); 
+              component.set("displayusers",false);
+              component.set("displaytagspage", false);
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("news") && !url.includes("/c/")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaytagspage", false);
+              component.set("displayusers",false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",true);
+              
+            }
+            else if (url.includes("new") && !url.includes("/c/")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false);
+              component.set("displayadminpage", false);
+              component.set("displaytagspage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displayusers",false);
+              component.set("displaynewpage",true);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }else if (url.includes("unread")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displayusers",false);
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaytoppage", false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",true);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("review")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displayusers",false);
+              component.set("displaylatestpage",false);
+              component.set("displaytoppage", false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",true);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("badges")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage");
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displaytagspage", false);
+              component.set("displayadminpage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaytoppage", false);
+              component.set("displayusers",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",true);
+              component.set("displaygroups",false);
+              component.set("displaymirnetpage", false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }else if (url.includes("mirnet")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", true); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displaytagspage", false);
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displayusers",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            
+            else if (url.includes("omicsnet")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false);
+              component.set("displaytagspage", false);
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",true);
+              component.set("displayexpressanalystpage",false);
+              component.set("displayusers",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+            }else if (url.includes("expressanalyst")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaytagspage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displayusers",false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",true);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            else if (url.includes("mgwas-explorer")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displayusers",false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",true);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }else if (url.includes("seq2fun")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayusers",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",true);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              }
+              else if (url.includes("fastbmd")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaytagspage", false);
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayusers",false);
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",true);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              }
+              else if (url.includes("ecotoxxplorer")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displayusers",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",true);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              }
+            else if (url.includes("trpnet")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayusers",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",true);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              }
+            else if (url.includes("ecoomicsanalyst")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displaytagspage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayusers",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",true);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+              }
+          else if (url.includes("ecoomicsdb")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displayusers",false);
+              component.set("displaylatestpage",false);
+              component.set("displaytagspage", false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",true);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+              }
+              
+              
+              
+               else if (url.includes("site-feedback")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displaytagspage", false);
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayusers",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",true);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              
+              }
+              else if (url.includes("uncategorized")){
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displaymirnetpage", false); 
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayhomepg", false); 
+              component.set("displayadminpage", false);
+              component.set("displaytoppage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaynewpage",false);
+              component.set("displaytagspage", false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displayusers",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",true);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displaybookmarkspage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+              
+              }
+            
+            else if (url.includes("/u") && !url.includes("/c/")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymirnetpage", false);
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaytoppage", false);
+              component.set("displaytagspage", false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",false);
+              component.set("displayusers",true);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            
+        
+            
+            else if (url.includes("/g") && !url.includes("/c/")){ 
+              // If it's the homepage add the 'custom-homepage' class to HTML tag
+              // and set 'displayCustomHomepage' to true
+              document.querySelector("html").classList.add("custom-homepage"); 
+              component.set("displayusers",false);
+              component.set("displaytospage", false); 
+              component.set("displayprivacypage", false); 
+              component.set("displayhomepg", false); 
+              component.set("displaymirnetpage", false);
+              component.set("displaymicrobiomeanalystpage", false); 
+              component.set("displayMetaboAnalystpage", false);
+              component.set("displaynetworkanalystpage", false); 
+              component.set("displayomicsanalystpage", false);
+              component.set("displayadminpage", false);
+              component.set("displaylatestpage",false);
+              component.set("displaytoppage", false);
+              component.set("displaytagspage", false);
+              component.set("displaynewpage",false);
+              component.set("displayunread",false);
+              component.set("displayreview",false);
+              component.set("displaybadges",false);
+              component.set("displaygroups",true);
+              component.set("displayomicsnetpage",false);
+              component.set("displayexpressanalystpage",false);
+              component.set("displaymgwas-explorerpage",false);
+              component.set("displayseq2funpage",false);
+              component.set("displayfastbmdpage",false);
+              component.set("displayecotoxxplorerpage",false);
+              component.set("displaytrpnetpage",false);
+              component.set("displayecoomicsanalystpage",false);
+              component.set("displayecoomicsdbpage",false);
+              component.set("displaysite-feedbackpage",false);
+              component.set("displayuncategorizedpage",false);
+              component.set("displayunseenpage",false);
+              component.set("displaypostedpage",false);
+              component.set("displayaboutpage",false);
+              component.set("displayfaqpage",false);
+              component.set("displaystaffpage", false); 
+              component.set("displayloungepage",false);
+              component.set("displaynewspage",false);
+            }
+            
+        }
+        else {
+                document.getElementsByClassName('search-banner')[0].style.display="none";
+        }
+      });
+    }
+    
+  });
+
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="/connectors/top-notices/custom-homepage">
+{{#if displaytagspage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="tags"><a href="https://omicsforum.ca/tags">Tags</a></li>
+    </ul>
+  {{/if}}
+{{#if displayusers}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="users"><a href="https://omicsforum.ca/u?order=likes_received">Users</a></li>
+    </ul>
+  {{/if}}
+{{#if displayecoomicsanalystpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="ecoomicsanalyst"><a href="https://omicsforum.ca/c/ecoomicsanalyst/18">EcoOmicsAnalyst</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayecoomicsdbpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="ecoomicsdb"><a href="https://omicsforum.ca/c/ecoomicsdb/19">EcoOmicsDB</a></li>
+    </ul>
+  {{/if}}
+  
+
+{{#if displaynewspage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="news"><a href="https://omicsforum.ca/news">News</a></li>
+    </ul>
+  {{/if}}
+{{#if displaystaffpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="staff"><a href="https://omicsforum.ca/c/staff/3">Staff</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayloungepage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="lounge"><a href="https://omicsforum.ca/c/lounge/4">Lounge</a></li>
+    </ul>
+  {{/if}}
+{{#if displaytospage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="tos"><a href="https://omicsforum.ca/tos">Terms of Service</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayprivacypage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="privacy"><a href="https://omicsforum.ca/privacy">Privacy</a></li>
+    </ul>
+  {{/if}}
+{{#if displayfaqpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="FAQ"><a href="https://omicsforum.ca/faq">FAQ</a></li>
+    </ul>
+  {{/if}}
+{{#if displayaboutpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="about"><a href="https://omicsforum.ca/about">About</a></li>
+    </ul>
+  {{/if}}
+{{#if displaybookmarkspage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="bookmarks"><a href="https://omicsforum.ca/bookmarks">Bookmarks</a></li>
+    </ul>
+  {{/if}}
+{{#if displaypostedpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="posted"><a href="https://omicsforum.ca/posted">My Posts</a></li>
+    </ul>
+  {{/if}}
+{{#if displayunseenpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="unseen"><a href="https://omicsforum.ca/unseen">Unseen</a></li>
+    </ul>
+  {{/if}}
+{{#if displayuncategorizedpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="uncategorized"><a href="https://omicsforum.ca/c/uncategorized/1">Uncategorized</a></li>
+    </ul>
+  {{/if}}
+{{#if displaysite-feedbackpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="site-feedback"><a href="https://omicsforum.ca/c/site-feedback/2">Site Feedback</a></li>
+    </ul>
+  {{/if}}
+{{#if displaytrpnetpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="trpnet"><a href="https://omicsforum.ca/c/trpnet/16">TrpNet</a></li>
+    </ul>
+  {{/if}}
+{{#if displayecotoxxplorerpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="ecotoxxplorer"><a href="https://omicsforum.ca/c/ecotoxxplorer/15">EcoToxXplorer</a></li>
+    </ul>
+  {{/if}}
+{{#if displayfastbmdpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="fastbmd"><a href="https://omicsforum.ca/c/fastbmd/14">FastBMD</a></li>
+    </ul>
+  {{/if}}
+{{#if displayseq2funpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="seq2fun"><a href="https://omicsforum.ca/c/seq2fun/13">Seq2Fun</a></li>
+    </ul>
+  {{/if}}
+
+{{#if displaymgwas-explorerpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="mgwas-explorer"><a href="https://omicsforum.ca/c/mgwas-explorer/12">mGWAS-Explorer</a></li>
+    </ul>
+  {{/if}}
+{{#if displayexpressanalystpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="expressanalyst"><a href="https://omicsforum.ca/c/expressanalyst/11">ExpressAnalyst</a></li>
+    </ul>
+  {{/if}}
+
+
+
+{{#if displayomicsnetpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="omicsnet"><a href="https://omicsforum.ca/c/omicsnet/10">OmicsNet</a></li>
+    </ul>
+  {{/if}}
+    {{#if displaymirnetpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="mirnet"><a href="https://omicsforum.ca/c/mirnet/9">miRNet</a></li>
+    </ul>
+  {{/if}}
+    
+  {{#if displayhomepg}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+    </ul>
+  {{/if}}
+  {{#if displaybadges}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="badges"><a href="https://omicsforum.ca/badges">Badges</a></li>
+    </ul>
+  {{/if}}
+  {{#if displaygroups}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="groups"><a href="https://omicsforum.ca/g">Groups</a></li>
+    </ul>
+  {{/if}}
+   {{#if displaylatestpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="latest"><a href="https://omicsforum.ca/latest">Latest</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayreview}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="review"><a href="https://omicsforum.ca/review">Review</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayunread}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="unread"><a href="https://omicsforum.ca/unread">Unread</a></li>
+    </ul>
+  {{/if}}
+  {{#if displaynewpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="new"><a href="https://omicsforum.ca/new">New</a></li>
+    </ul>
+  {{/if}}
+  {{#if displaytoppage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="top"><a href="https://omicsforum.ca/top">Top</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayMetaboAnalystpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+
+      <li id="metaboanalyst"><a href="https://omicsforum.ca/c/metaboanalyst/5">MetaboAnalyst</a></li>
+    </ul>
+  {{/if}}
+  
+  {{#if displaymicrobiomeanalystpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      
+      <li id="MicrobiomeAnalyst"><a href="https://omicsforum.ca/c/microbiomeanalyst/7">MicrobiomeAnalyst</a></li>
+    </ul>
+  {{/if}}
+  {{#if displaynetworkanalystpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      
+      <li id="networkanalyst"><a href="https://omicsforum.ca/c/networkanalyst/6">NetworkAnalyst</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayomicsanalystpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      
+      <li id="omicsanalyst"><a href="https://omicsforum.ca/c/omicsanalyst/8">OmicsAnalyst</a></li>
+    </ul>
+  {{/if}}
+  {{#if displayadminpage}} 
+    <ul class="breadcrumb">
+      <li id="home"><a href="https://omicsforum.ca">Home</a></li>
+      <li id="admin"><a href="https://omicsforum.ca/admin">Admin</a></li>
+    </ul>
+  {{/if}}
+ 
+  
+</script>
+
+
+
+
+
+
+
+
